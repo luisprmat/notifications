@@ -56,9 +56,9 @@
                                 <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-paper-plane fa-fw"></i></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="{{ route('notifications.index') }}">
                                     <i class="fas fa-bell fa-fw"></i>
-                                    @if ($count = Auth::user()->notifications->count())
+                                    @if ($count = Auth::user()->unreadNotifications->count())
                                         <span class="badge badge-pill badge-secondary">
                                             {{ $count }}
                                         </span>

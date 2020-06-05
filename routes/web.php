@@ -22,3 +22,7 @@ Auth::routes();
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::post('messages', 'HomeController@store')->name('messages.store');
+Route::get('messages/{message}', 'HomeController@show')->name('messages.show');
+Route::get('notifications', 'NotificationController@index')->name('notifications.index');
+Route::patch('notifications/{notification}', 'NotificationController@read')->name('notifications.read');
+Route::delete('notifications/{notification}', 'NotificationController@destroy')->name('notifications.destroy');

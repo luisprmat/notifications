@@ -2,10 +2,11 @@
 
 namespace App\Notifications;
 
+use App\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class MessageSent extends Notification
 {
@@ -53,6 +54,9 @@ class MessageSent extends Notification
      */
     public function toArray($notifiable)
     {
-        return $this->msg->toArray();
+        return [
+            'link' => route('messages.show', $this->msg->id),
+            'text' => 'Has recibido un mensaje de ' . $this->msg->sender->name
+        ];
     }
 }

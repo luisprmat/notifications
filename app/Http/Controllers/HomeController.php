@@ -46,4 +46,9 @@ class HomeController extends Controller
 
         return back()->withFlash('Tu mensaje fue enviado');
     }
+
+    public function show(Message $message)
+    {
+        return view('messages.show', compact('message'));
+    }
 }
