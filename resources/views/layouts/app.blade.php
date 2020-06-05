@@ -57,7 +57,12 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <i class="fas fa-bell fa-fw"></i><span class="badge badge-pill badge-secondary">6</span>
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    @if ($count = Auth::user()->notifications->count())
+                                        <span class="badge badge-pill badge-secondary">
+                                            {{ $count }}
+                                        </span>
+                                    @endif
                                 </a>
                             </li>
                             <li class="nav-item dropdown">

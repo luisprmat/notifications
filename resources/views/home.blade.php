@@ -10,18 +10,28 @@
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <select class="custom-select" name="recipient_id">
+                            <select class="custom-select @error('recipient_id') is-invalid @enderror" name="recipient_id">
                                 <option value="">Seleccione el usuario</option>
                                 @foreach ($users as $user)
                                     <option value="{{ $user->id }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
+                            @error('recipient_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <textarea name="body"
-                                class="form-control"
+                                class="form-control @error('body') is-invalid @enderror"
                                 placeholder="Escribe aquí tu mensaje"
                             ></textarea>
+                            @error('body')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary btn-block">Enviar</button>
