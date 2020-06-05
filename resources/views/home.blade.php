@@ -13,7 +13,7 @@
                             <select class="custom-select @error('recipient_id') is-invalid @enderror" name="recipient_id">
                                 <option value="">Seleccione el usuario</option>
                                 @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}" {{ old('recipient_id') == $user->id ? 'selected' : ''}}>{{ $user->name }}</option>
                                 @endforeach
                             </select>
                             @error('recipient_id')
@@ -26,7 +26,7 @@
                             <textarea name="body"
                                 class="form-control @error('body') is-invalid @enderror"
                                 placeholder="Escribe aquí tu mensaje"
-                            ></textarea>
+                            >{{ old('body') }}</textarea>
                             @error('body')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

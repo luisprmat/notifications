@@ -1,12 +1,12 @@
 @component('mail::message')
-# Introduction
+# Hola {{ $notifiable->name }}
 
-The body of your message.
+Has recibido un mensaje de {{ $msg->sender->name }}
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => route('messages.show', $msg)])
+Click aquí para ver el mensaje
 @endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
+Gracias por usar nuestra aplicación,<br>
+**{{ config('app.name') }}**
 @endcomponent

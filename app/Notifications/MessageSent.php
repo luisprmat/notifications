@@ -32,7 +32,7 @@ class MessageSent extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -43,7 +43,10 @@ class MessageSent extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->markdown('emails.message-sent');
+        return (new MailMessage)->markdown('emails.message-sent', [
+            'msg' => $this->msg,
+            'notifiable' => $notifiable
+        ])->subject("Nuevo mensaje de {$this->msg->sender->name}");
     }
 
     /**
