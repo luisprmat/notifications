@@ -49,6 +49,17 @@
                                 </li>
                             @endif
                         @else
+                            {{-- <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home fa-fw"></i></a>
+                            </li> --}}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-paper-plane fa-fw"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-bell fa-fw"></i><span class="badge badge-pill badge-secondary">6</span>
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -73,6 +84,17 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @if (session('flash'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>OK:</strong> {{ session('flash') }}
+                    </div>
+                @endif
+            </div>
+
             @yield('content')
         </main>
     </div>

@@ -5,17 +5,29 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                <h3 class="card-header">Enviar mensaje</h3>
+                <form method="POST" action="{{ route('messages.store') }}">
+                    @csrf
+                    <div class="card-body">
+                        <div class="form-group">
+                            <select class="custom-select" name="recipient_id">
+                                <option value="">Seleccione el usuario</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+                        <div class="form-group">
+                            <textarea name="body"
+                                class="form-control"
+                                placeholder="Escribe aquí tu mensaje"
+                            ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-block">Enviar</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
