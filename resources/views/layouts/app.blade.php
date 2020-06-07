@@ -49,11 +49,11 @@
                                 </li>
                             @endif
                         @else
-                            {{-- <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home fa-fw"></i></a>
-                            </li> --}}
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-paper-plane fa-fw"></i></a>
+                                <a class="nav-link" href="{{ route('home') }}"><i class="fas fa-home fa-fw"></i></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('messages.create') }}"><i class="fas fa-paper-plane fa-fw"></i></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('notifications.index') }}">

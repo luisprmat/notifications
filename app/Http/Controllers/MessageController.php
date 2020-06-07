@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\MessageRequest;
 use App\Notifications\MessageSent;
 
-class HomeController extends Controller
+class MessageController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,7 +25,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function create()
     {
         $users = User::where('id', '!=', auth()->id())->get();
 
