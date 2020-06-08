@@ -4,13 +4,15 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Inicio</div>
-
-                <div class="card-body">
-                    Bienvenido
+            @foreach ($posts as $post)
+                <div class="card mb-2">
+                    <div class="card-header">
+                        <a href="{{ route('posts.show', $post) }}">
+                            {{ $post->title }}
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

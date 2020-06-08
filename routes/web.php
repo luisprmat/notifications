@@ -1,5 +1,6 @@
 <?php
 
+use App\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,10 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts = Post::latest()->get();
+
+    return view('welcome', compact('posts'));
 })->name('home');
 
 Auth::routes();
+
+Route::resource('posts', 'PostController');
 
 Route::get('messages/create', 'MessageController@create')->name('messages.create');
 Route::post('messages', 'MessageController@store')->name('messages.store');
