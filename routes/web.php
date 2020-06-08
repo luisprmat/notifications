@@ -30,4 +30,5 @@ Route::post('messages', 'MessageController@store')->name('messages.store');
 Route::get('messages/{message}', 'MessageController@show')->name('messages.show');
 Route::get('notifications', 'NotificationController@index')->name('notifications.index');
 Route::patch('notifications/{notification}', 'NotificationController@read')->name('notifications.read');
+Route::patch('notifications', 'NotificationController@readAll')->name('notifications.readAll');
 Route::delete('notifications/{notification}', 'NotificationController@destroy')->name('notifications.destroy');

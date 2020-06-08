@@ -14,6 +14,11 @@ class NotificationController extends Controller
 
     public function index()
     {
+        if(request()->wantsJson())
+        {
+            return auth()->user()->unreadNotifications;
+        }
+
         return view('notifications.index', [
             'unreadNotifications' => auth()->user()->unreadNotifications,
             'readNotifications' => auth()->user()->readNotifications
@@ -24,7 +29,28 @@ class NotificationController extends Controller
     {
         $notification->markAsRead();
 
+        if(request()->wantsJson())
+        {
+            return auth()->user()->unreadNotifications;
+        }
+
         return back()->withFlash('Notificación marcada como leída');
+    }
+
+    public function readAll()
+    {
+        $unreadNotifications = auth()->user()->unreadNotifications;
+
+        foreach ($unreadNotifications as $notification) {
+            $notification->markAsRead();
+        }
+
+        if(request()->wantsJson())
+        {
+            return auth()->user()->unreadNotifications;
+        }
+
+        return back()->withFlash('No hay notificaciones pendientes');
     }
 
     public function destroy(DatabaseNotification $notification)
