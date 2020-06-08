@@ -2,10 +2,10 @@
 
 namespace App\Notifications;
 
-use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class MessageSent extends Notification
@@ -32,7 +32,8 @@ class MessageSent extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database', 'broadcast'];
+        // return ['database', 'broadcast'];
     }
 
     /**
@@ -61,5 +62,10 @@ class MessageSent extends Notification
             'link' => route('messages.show', $this->msg->id),
             'text' => 'Has recibido un mensaje de ' . $this->msg->sender->name
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage($this->toArray($notifiable));
     }
 }

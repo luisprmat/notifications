@@ -25,13 +25,28 @@
 
 <script>
     export default {
+        props: ['user'],
         data() {
             return {
+                userDecoded: {},
                 notifications: [],
                 isDropdownOpen: false
             }
         },
         mounted() {
+            // Channel: private-App.User.1,
+            // Event: Illuminate\Notifications\Events\BroadcastNotificationCreated
+            Echo.private(`App.User.${this.userDecoded.id}`)
+                .notification(notification => {
+                    this.notifications.push({
+                        id: notification.id,
+                        data: {
+                            link: notification.link,
+                            text: notification.text
+                        }
+                    })
+                })
+
             axios.get('/notifications')
                 .then(res => {
                     this.notifications = res.data
@@ -39,6 +54,9 @@
                 .catch(err => {
                     console.log(err.response.data)
                 })
+        },
+        created() {
+            this.userDecoded = JSON.parse(this.user)
         },
         methods: {
             markAsRead(notification) {
