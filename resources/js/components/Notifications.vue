@@ -34,6 +34,10 @@
             }
         },
         mounted() {
+            // Echo.channel('new-posts')
+            //     .listen('PostCreated', ({post}) => {
+            //         console.log(post)
+            //     })
             // Channel: private-App.User.1,
             // Event: Illuminate\Notifications\Events\BroadcastNotificationCreated
             Echo.private(`App.User.${this.userDecoded.id}`)

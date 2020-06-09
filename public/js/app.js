@@ -1945,6 +1945,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    // Echo.channel('new-posts')
+    //     .listen('PostCreated', ({post}) => {
+    //         console.log(post)
+    //     })
     // Channel: private-App.User.1,
     // Event: Illuminate\Notifications\Events\BroadcastNotificationCreated
     Echo["private"]("App.User.".concat(this.userDecoded.id)).notification(function (notification) {

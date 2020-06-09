@@ -34,6 +34,6 @@ class PostCreated
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('new-posts');
     }
 }

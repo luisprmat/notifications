@@ -4,9 +4,10 @@ namespace App\Notifications;
 
 use App\Post;
 use Illuminate\Bus\Queueable;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 
 class PostPublished extends Notification
 {
@@ -33,7 +34,7 @@ class PostPublished extends Notification
     public function via($notifiable)
     {
         // return ['mail', 'database']; //pending send deferred emails
-        return ['database'];
+        return ['database', 'broadcast'];
     }
 
     /**
@@ -62,5 +63,10 @@ class PostPublished extends Notification
             'link' => route('posts.show', $this->post),
             'text' => "Hemos publicado un nuevo post. {$this->post->title}"
         ];
+    }
+
+    public function toBroadcast($notifiable)
+    {
+        return new BroadcastMessage($this->toArray($notifiable));
     }
 }
