@@ -32,6 +32,10 @@ class NotifyUsersAboutNewPost
         $users = User::all(); // filtro, solo usuarios que decidieron recibir notificaciones
 
         // TODO: Send deferred notifications (5 per each 10 seconds -> (limit of mailtrap free))
-        Notification::send($users, new PostPublished($event->post));
+        // Notification::send($users, new PostPublished($event->post));
+        foreach ($users as $user) {
+            Notification::send($user, new PostPublished($event->post));
+            sleep(2);
+        }
     }
 }

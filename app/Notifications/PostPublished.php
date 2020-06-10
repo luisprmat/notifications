@@ -34,7 +34,7 @@ class PostPublished extends Notification
     public function via($notifiable)
     {
         // return ['mail', 'database']; //pending send deferred emails
-        return ['database', 'broadcast'];
+        return ['mail', 'database', 'broadcast'];
     }
 
     /**
